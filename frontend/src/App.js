@@ -19,7 +19,7 @@ function App() {
           </p>
         </div>
         <div>
-          <Form />
+          <Form onRecommendationsUpdate={setRecommendations} />
         </div>
         <div>
           <RecommendationList recommendations={recommendations} />
