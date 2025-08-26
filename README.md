@@ -74,6 +74,10 @@ Para completar este teste, você deve concentrar-se principalmente em três arqu
 3. Para instalar o projeto, execute o script `./install.sh` 
 4. Inicie a aplicação: `yarn start`
 
+## Como Executar os Testes Unitários
+1. Vá até o diretório frontend: `cd frontend`
+2. Inicie os testes: `yarn install`
+
 ### Scripts Disponíveis
 
 - `start`: Inicia a aplicação React em modo de desenvolvimento.
