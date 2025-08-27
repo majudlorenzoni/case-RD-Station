@@ -3,28 +3,45 @@ import Form from './components/Form/Form';
 import RecommendationList from './components/RecommendationList/RecommendationList';
 
 function App() {
-  const [recommendations, setRecommendations ] = useState([])
+  const [recommendations, setRecommendations] = useState([]);
+  const [isSubmitted, setIsSubmitted] = useState(false); // controla se o form foi submetido
 
-  /**
-   * Dadas atualizações no formulário, necessário atualizar a lista de recomendações
-   */
+  const handleFormSubmit = (newRecommendations) => {
+    setRecommendations(newRecommendations);
+    setIsSubmitted(true);
+  };
 
   return (
-    <div className="bg-gray-100 min-h-screen flex flex-col justify-center items-center">
-      <h1 className="text-3xl font-bold mb-8">Recomendador de Produtos RD Station</h1>
-      <div className="bg-white p-8 rounded-lg shadow-md w-full md:w-3/4 lg:w-1/2 grid grid-cols-1 md:grid-cols-2 gap-8">
-        <div className="col-span-2 mb-4">
-          <p className="text-lg">
-            Bem-vindo ao Recomendador de Produtos RD Station. Aqui você pode encontrar uma variedade de produtos da RD Station, cada um projetado para atender às necessidades específicas do seu negócio. De CRM a Marketing, de Conversas a Inteligência Artificial, temos uma solução para ajudar você a alcançar seus objetivos. Use o formulário abaixo para selecionar suas preferências e funcionalidades desejadas e receba recomendações personalizadas de produtos que melhor atendam às suas necessidades.
+    <div className="bg-gray-100 min-h-screen flex flex-col items-center">
+      <header className="w-full bg-[#D9D9D9]">
+        <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+          <img
+            src="/imgs/rd-station-default.svg"
+            alt="RD Station Logo"
+            className="h-10"
+          />
+        </div>
+      </header>
+
+      <div className="p-6 rounded-lg w-full md:w-full lg:w-4/5 xl:w-3/4 grid grid-cols-1">
+        <div className="mb-4">
+          <h1 className="font-agdasima text-4xl text-center font-bold mb-2">Recomendador de Produtos RD Station</h1>
+          <p className="font-roboto text-lg text-center">
+            Nossa plataforma oferece uma ampla gama de soluções, desde CRM e Marketing até Conversas e Inteligência Artificial, todas desenvolvidas para atender às necessidades do seu negócio. Preencha o formulário abaixo indicando suas preferências e funcionalidades desejadas, e receba recomendações personalizadas dos produtos que melhor se encaixam nos seus objetivos.
           </p>
         </div>
-        <div>
-          <Form onRecommendationsUpdate={setRecommendations} />
+        <div id="form">
+          <Form onRecommendationsUpdate={handleFormSubmit} />
         </div>
-        <div>
-          <RecommendationList recommendations={recommendations} />
-        </div>
+        
+       {isSubmitted && (
+          <div id="recommendations">
+            <RecommendationList recommendations={recommendations} />
+          </div>
+        )}
       </div>
+
+
     </div>
   );
 }

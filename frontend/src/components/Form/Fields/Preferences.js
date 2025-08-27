@@ -20,11 +20,11 @@ function Preferences({
   };
 
   return (
-    <div className="mb-4">
-      <h2 className="text-lg font-bold mb-2">Preferências:</h2>
-      <ul>
+    <div className="w-full max-w-3xl mx-auto p-4">
+      <h2 className="font-agdasima text-3xl font-bold text-center mb-4">Preferências</h2>
+      <ul className="font-roboto bg-white border-[6px] border-[#003D5C] border-b-[16px] rounded-lg p-4 space-y-2">
         {preferences.map((preference, index) => (
-          <li key={index} className="mb-2">
+          <li key={index} className="flex items-center">
             <Checkbox
               value={preference}
               checked={currentPreferences.includes(preference)}

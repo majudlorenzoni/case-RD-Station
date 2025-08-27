@@ -25,7 +25,7 @@ function Form({ onRecommendationsUpdate }) {
 
   return (
     <form
-      className="max-w-md mx-auto p-4 bg-white rounded-lg shadow-md"
+      className="gray-100 w-full max-w-3xl mx-auto bg-gray-100 rounded-lg space-y-6"
       onSubmit={handleSubmit}
     >
       <Preferences

@@ -14,9 +14,9 @@ function Features({ features, selectedFeatures = [], onFeatureChange }) {
   };
 
   return (
-    <div className="mb-4">
-      <h2 className="text-lg font-bold mb-2">Funcionalidades:</h2>
-      <ul>
+    <div className="mb-6 w-full max-w-3xl mx-auto p-4">
+      <h2 className="font-agdasima text-3xl font-bold text-center mb-4">Funcionalidades</h2>
+      <ul className="font-roboto bg-white border-[6px] border-[#00D4FF] border-b-[16px] rounded-lg p-4 space-y-2">
         {features.map((feature, index) => (
           <li key={index} className="mb-2">
             <Checkbox

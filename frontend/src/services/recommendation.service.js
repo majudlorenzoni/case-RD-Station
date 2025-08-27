@@ -12,7 +12,6 @@ const getRecommendations = (
 
   if (!products || products.length === 0) return [];
 
- // Calcula pontuação para cada produto baseado em matches de features e preferences
   const scoredProducts = products.map((product, index) => {
     const preferenceMatches = product.preferences.filter((p) =>
       selectedPreferences.includes(p)
@@ -29,10 +28,9 @@ const getRecommendations = (
     };
   });
 
-  // Ordena por score (maior primeiro); em caso de empate, mantém a ordem original
   const sortedProducts = scoredProducts.sort((a, b) => {
     if (b.score === a.score) {
-      return a.originalIndex - b.originalIndex; // mantém a ordem original
+      return a.originalIndex - b.originalIndex; 
     }
     return b.score - a.score;
   });
