@@ -4,7 +4,7 @@ import RecommendationList from './components/RecommendationList/RecommendationLi
 
 function App() {
   const [recommendations, setRecommendations] = useState([]);
-  const [isSubmitted, setIsSubmitted] = useState(false); // controla se o form foi submetido
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
   const handleFormSubmit = (newRecommendations) => {
     setRecommendations(newRecommendations);
@@ -41,6 +41,28 @@ function App() {
         )}
       </div>
 
+      <footer className="w-full bg-[#3A4149] mt-12 py-4">
+        <p className="text-center text-white font-agdasima">
+          Case desenvolvido por{' '}
+          <a
+            href="https://github.com/majudlorenzoni"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-gray-300 no-underline"
+          >
+            Maria Júlia Lorenzoni
+          </a>{' '}
+          para{' '}
+          <a
+            href="https://www.rdstation.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-gray-300 no-underline"
+          >
+            RD Station
+          </a>
+        </p>
+      </footer>
 
     </div>
   );

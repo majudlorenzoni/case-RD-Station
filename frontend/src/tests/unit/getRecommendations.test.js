@@ -35,7 +35,7 @@ describe('getRecommendations - testes unitários', () => {
 
       expect(result).toHaveLength(1);
       expect(result[0]).toMatchObject({ id: 1, name: 'RD Station CRM' });
-      expect(typeof result[0].score).toBe('number');
+      expect(result[0].score).toBe(3); // valida o valor exato do score
     });
 
     test('em caso de empate, retorna o último produto da lista original', () => {
@@ -49,6 +49,20 @@ describe('getRecommendations - testes unitários', () => {
       );
       expect(result).toHaveLength(1);
       expect(result[0].id).toBe(3);
+    });
+
+    test('combinação de preferências e features com empate', () => {
+      const result = getRecommendations(
+        {
+          selectedPreferences: ['Integração fácil com ferramentas de e-mail'],
+          selectedFeatures: ['Gestão de leads e oportunidades'],
+          selectedRecommendationType: 'SingleProduct',
+        },
+        mockProducts
+      );
+      expect(result).toHaveLength(1);
+      // verifica se retorna o último produto da lista original em caso de empate
+      expect(result[0].id).toBe(1);
     });
   });
 
@@ -78,6 +92,18 @@ describe('getRecommendations - testes unitários', () => {
       );
       expect(result).toEqual([]);
     });
+
+    test('combinação de preferências e features múltiplas', () => {
+      const result = getRecommendations(
+        {
+          selectedPreferences: ['Integração fácil com ferramentas de e-mail'],
+          selectedFeatures: ['Rastreamento de comportamento do usuário'],
+          selectedRecommendationType: 'MultipleProducts',
+        },
+        mockProducts
+      );
+      expect(result.map(p => p.id)).toEqual([1, 2]);
+    });
   });
 
   test('não lança erro com tipos inesperados', () => {
@@ -101,6 +127,35 @@ describe('getRecommendations - testes unitários', () => {
       mockProducts
     );
     expect(result).toEqual([]);
+  });
+
+  test('retorna [] quando selectedRecommendationType é inválido', () => {
+    const result = getRecommendations(
+      {
+        selectedPreferences: ['Integração fácil com ferramentas de e-mail'],
+        selectedFeatures: ['Gestão de leads e oportunidades'],
+        selectedRecommendationType: 'InvalidType',
+      },
+      mockProducts
+    );
+    expect(result).toEqual([]);
+  });
+
+  test('não quebra caso produto não tenha preferences ou features', () => {
+    const productsWithMissingData = [
+      { id: 10, name: 'Produto Sem Data' },
+      ...mockProducts
+    ];
+    const result = getRecommendations(
+      {
+        selectedPreferences: ['Integração fácil com ferramentas de e-mail'],
+        selectedFeatures: ['Gestão de leads e oportunidades'],
+        selectedRecommendationType: 'MultipleProducts',
+      },
+      productsWithMissingData
+    );
+    // garante que o produto sem data não entra nas recomendações
+    expect(result.some(p => p.id === 10)).toBe(false);
   });
 
 });

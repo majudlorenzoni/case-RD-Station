@@ -1,7 +1,5 @@
-// RecommendationList.jsx
-import React from 'react';
 
-const BORDER_COLORS = ["#00F2C9", "#003D5C", "#FF6B6B", "#FFD93D", "#6C63FF"];
+const BORDER_COLORS = ["#09dbb8ff", "#003D5C", "#f86d6dff", "#481583ff"];
 
 const PRODUCT_DETAILS = {
   '1': {
@@ -48,7 +46,6 @@ function RecommendationCard({ product, borderColor }) {
   );
 }
 
-// Componente principal da lista de recomendações
 function RecommendationList({ recommendations }) {
   const enrichedRecommendations = (recommendations || []).map(r => ({
     ...r,
